@@ -64,29 +64,29 @@ char compute_grade(Student stud)
     return stud.grade;
 }
 
-void compute_one_gradebook(Gradebook gb)
+void compute_one_gradebook(Gradebook *pg)
 {
     float sum = 0, weightSum = 0;
 
-    for (int i = 0; i < gb.no_scores; i++)
-        weightSum += gb.weightage[i];
+    for (int i = 0; i < pg->no_scores; i++)
+        weightSum += pg->weightage[i];
 
-    for (int i = 0; i < gb.no_students; i++)
+    for (int i = 0; i < pg->no_students; i++)
     {
         sum = 0;
 
-        for (int j = 0; j < gb.no_scores; j++)
-            sum += gb.student[i].scores[j] * gb.weightage[j];
+        for (int j = 0; j < pg->no_scores; j++)
+            sum += pg->student[i].scores[j] * pg->weightage[j];
 
-        gb.student[i].average = sum / weightSum;
-        gb.student[i].grade = compute_grade(gb.student[i]);
+        pg->student[i].average = sum / weightSum;
+        pg->student[i].grade = compute_grade(pg->student[i]);
     }
 }
 
 void compute_n_gradebooks(int n, Gradebook gb[n])
 {
     for (int i = 0; i < n; i++)
-        compute_one_gradebook(gb[i]);
+        compute_one_gradebook(&gb[i]);
 }
 
 void print_one_student(Student stud)
@@ -119,6 +119,3 @@ int main()
 
     return 0;
 }
-
-
-
