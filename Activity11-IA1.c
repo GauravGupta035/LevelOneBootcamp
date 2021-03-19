@@ -18,7 +18,7 @@ Student input_one_student(int no_scores)
 {
     Student stud;
 
-    scanf("%f", &stud.name);
+    scanf("%s", &stud.name);
 
     for (int i = 0; i < no_scores; i++)
         scanf("%d", &stud.scores[i]);
